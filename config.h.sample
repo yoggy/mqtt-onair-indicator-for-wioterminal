@@ -4,9 +4,9 @@ char *wifi_password  = "wifi password";
 char *mqtt_host    = "iot.eclipse.org";
 int  mqtt_port       = 1883;
 
-char *mqtt_client_id = "mqtt-m5stickc-pir-001";
+char *mqtt_client_id = "mqtt-onair-indicator-0001";
 bool mqtt_use_auth   = false;
 char *mqtt_username  = "username";
 char *mqtt_password  = "password";
 
-char *mqtt_publish_topic = "m5pir/0001";
+char *mqtt_onair_data_topic = "onair-status/0001";
