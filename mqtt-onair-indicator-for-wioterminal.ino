@@ -6,7 +6,7 @@
 #include"TFT_eSPI.h"
 #include"Free_Fonts.h"                 // https://github.com/Seeed-Studio/Seeed_Arduino_LCD/blob/master/examples/320%20x%20240/All_Free_Fonts_Demo/Free_Fonts.h
 #include "lcd_backlight.hpp"          // https://github.com/Seeed-Studio/Seeed_Arduino_Sketchbook/blob/master/examples/WioTerminal_BackLight/lcd_backlight.hpp
-#include "AtWiFi.h"                       // https://wiki.seeedstudio.com/Wio-Terminal-Network-Overview/
+#include "rpcWiFi.h"                      // https://wiki.seeedstudio.com/Wio-Terminal-Network-Overview/
 #include <PubSubClient.h>         // https://github.com/knolleary/pubsubclient
 
 #include "config.h"
@@ -22,13 +22,21 @@ bool is_on_air = false;
 void setup() {
   Serial.begin(115200);
 
+  // TFT settings
   tft.begin();
   tft.setRotation(3);
   tft.setFreeFont(FSSBO24);
 
+  // backlight settings
   digitalWrite(LCD_BACKLIGHT, HIGH);
-  pinMode(WIO_5S_PRESS, INPUT_PULLUP);
   backLight.initialize();
+
+  // 5 way switch settings https://wiki.seeedstudio.com/Wio-Terminal-Switch/
+  pinMode(WIO_5S_UP, INPUT_PULLUP);
+  pinMode(WIO_5S_DOWN, INPUT_PULLUP);
+  pinMode(WIO_5S_LEFT, INPUT_PULLUP);
+  pinMode(WIO_5S_RIGHT, INPUT_PULLUP);
+  pinMode(WIO_5S_PRESS, INPUT_PULLUP);
 
   drawConnecting();
 
